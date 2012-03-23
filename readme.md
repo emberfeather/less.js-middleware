@@ -1,3 +1,7 @@
+## Installation
+
+    sudo npm install less-middleware
+
 ## Examples
 
 ### Connect
