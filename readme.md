@@ -44,8 +44,8 @@
             <td><code>false</code></td>
         </tr>
         <tr>
-            <th><code>Desired level of LESS optimization. Optionally <code>0</code>, <code>1</code>, or <code>2</code></th>
-            <td></td>
+            <th><code>optimization</code></th>
+            <td>Desired level of LESS optimization. Optionally <code>0</code>, <code>1</code>, or <code>2</code></td>
             <td><code>0</code></td>
         </tr>
     </tbody>
