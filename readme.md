@@ -2,10 +2,10 @@
 
 ### Connect
 
-    require('less-middleware');
+    var lessMiddleware = require('less-middleware');
 
     var server = connect.createServer(
-        less.middleware({
+        lessMiddleware({
             src: __dirname + '/public',
             compress: true
         }),
@@ -14,14 +14,14 @@
 
 ### Express
 
-    require('less-middleware');
+    var lessMiddleware = require('less-middleware');
 
     var app = express.createServer();
 
     app.configure(function () {
         // Other configuration here...
 
-        app.use(less.middleware({
+        app.use(lessMiddleware({
             src: __dirname + '/public',
             compress: true
         }));
