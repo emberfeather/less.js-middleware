@@ -40,8 +40,8 @@
         </tr>
         <tr>
             <th><code>compress</code></th>
-            <td>Compress the output being written to the <code>*.css</code> files.</td>
-            <td><code>false</code></td>
+            <td>Compress the output being written to the <code>*.css</code> files. When set to <code>'auto'</code> compression will only happend when the css file ends with <code>.min.css</code> or <code>-min.css</code>.</td>
+            <td><code>auto</code></td>
         </tr>
         <tr>
             <th><code>optimization</code></th>
