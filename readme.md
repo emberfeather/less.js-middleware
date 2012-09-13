@@ -39,6 +39,11 @@
             <td><code>&lt;src&gt;</code></td>
         </tr>
         <tr>
+            <th><code>prefix</code></th>
+            <td>Path which should be stripped from the public <code>pathname</code>.</td>
+            <td><code>0</code></td>
+        </tr>
+        <tr>
             <th><code>compress</code></th>
             <td>Compress the output being written to the <code>*.css</code> files. When set to <code>'auto'</code> compression will only happen when the css file ends with <code>.min.css</code> or <code>-min.css</code>.</td>
             <td><code>auto</code></td>
@@ -76,6 +81,25 @@
 
         app.use(lessMiddleware({
             src: __dirname + '/public',
+            compress: true
+        }));
+
+        app.use(express.static(__dirname + '/public'));
+    });
+
+### Express - Different `src` and `dest`
+
+    var lessMiddleware = require('less-middleware');
+
+    var app = express.createServer();
+
+    app.configure(function () {
+        // Other configuration here...
+
+        app.use(lessMiddleware({
+            dest: __dirname + '/public/stylesheets',
+            src: __dirname + '/src/less',
+            prefix: '/stylesheets',
             compress: true
         }));
 
