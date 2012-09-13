@@ -89,6 +89,14 @@
 
 ### Express - Different `src` and `dest`
 
+When using a different `src` and `dest` you can use the `prefix` option to make the directory structure cleaner.
+
+Requests for static assets (like stylesheets) made to the express server use a `pathname` to look up the file. So if the request is for `http://localhost/stylesheets/styles.css` the `pathname` will be `/stylesheets/styles.css`.
+
+The less middleware uses that path to determine where to look for less files. In the original example it looks for the less file at `/public/stylesheets/styles.less` and compiles it to `/public/stylesheets/styles.css`.
+
+If you are using a different `src` and `dest` options it causes for more complex directories structures unless you use the `prefix` option. For example, without the `prefix`, and with a `src` of `/src/less` and a `dest` of `/public` it would look for the less file at `/src/less/stylesheets/styles.less` and compile it to `/public/stylesheets/styles.css`. To make it cleaner you can use the `prefix` option:
+
     var lessMiddleware = require('less-middleware');
 
     var app = express.createServer();
@@ -105,3 +113,5 @@
 
         app.use(express.static(__dirname + '/public'));
     });
+
+Using the `prefix` it changes the `pathname` from `/stylesheets/styles.css` to `/styles.css`. With that prefix removed from the `pathname` it makes things cleaner. With the `prefix` removed it would look for the less file at `/src/less/styles.less` and compile it to `/public/stylesheets/styles.css`.
