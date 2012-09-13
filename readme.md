@@ -41,7 +41,7 @@
         <tr>
             <th><code>prefix</code></th>
             <td>Path which should be stripped from the public <code>pathname</code>.</td>
-            <td><code>0</code></td>
+            <td></td>
         </tr>
         <tr>
             <th><code>compress</code></th>
