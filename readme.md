@@ -39,6 +39,11 @@
             <td><code>&lt;src&gt;</code></td>
         </tr>
         <tr>
+            <th><code>paths</code></th>
+            <td>Specify search paths for <code>@import</code> directives</td>
+            <td>The <code>dirname</code> of <code>&lt;src&gt;</code></td>
+        </tr>
+        <tr>
             <th><code>prefix</code></th>
             <td>Path which should be stripped from the public <code>pathname</code>.</td>
             <td></td>
