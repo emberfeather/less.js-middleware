@@ -58,6 +58,12 @@
             <td>Desired level of LESS optimization. Optionally <code>0</code>, <code>1</code>, or <code>2</code></td>
             <td><code>0</code></td>
         </tr>
+        <tr>
+            <th><code>dumpLineNumbers</th>
+            <td>Add line tracking to the compiled css. Optionally <code>0</code>, <code>'comments'</code>, or <code>'mediaquery'</code></td>
+            <td><code>0</code></td>
+        </tr>
+
     </tbody>
 </table>
 
