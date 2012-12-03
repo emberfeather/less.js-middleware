@@ -120,3 +120,110 @@ If you are using a different `src` and `dest` options it causes for more complex
     });
 
 Using the `prefix` it changes the `pathname` from `/stylesheets/styles.css` to `/styles.css`. With that prefix removed from the `pathname` it makes things cleaner. With the `prefix` removed it would look for the less file at `/src/less/styles.less` and compile it to `/public/stylesheets/styles.css`.
+
+### Importing less
+
+By default the directory in which the compiled files live in is already set as an import directive:
+
+```css
+// file1.less
+
+@import 'file2.less';
+
+body {
+  color: @bodyColor;
+}
+```
+
+```css
+// file2.less
+
+@bodyColor: #333333;
+```
+
+However, you can use the `paths` option if you need to specify other directories in which to search for importable less files.
+
+```js
+var less = require('less-middleware'),
+    path = require('path');
+
+    lessMiddleware({
+        src: path.join(__dirname, 'public'),
+        paths: [path.join(__dirname, 'module', 'less')]
+    });
+```
+
+```css
+// public/base.css
+
+@import 'colors';
+
+body {
+  color: @bodyColor;
+}
+```
+
+```css
+// module/less/colors.less
+
+@bodyColor: #333333;
+```
+
+### Using bootstrap
+
+Here's an example on how to use Twitter's bootstrap within an Express.js set-up:
+
+```js
+// package.json
+{
+  "name": "my-module",
+  // ...
+  "dependencies": {
+    "less-middleware": "*",
+    "bootstrap": "git+https://github.com/twitter/bootstrap.git#2.2.1",
+    "express": "r3.0.0"
+  }
+}
+```
+
+```js
+// app.js
+var express  = require('express')
+  , path     = require('path')
+  , app      = express()
+  , less     = require('less-middleware');
+
+app.configure(function(){
+  // ...
+  var bootstrapPath = path.join(__dirname, 'node_modules', 'bootstrap', 'less');
+  app.use(express.bodyParser());
+  app.use(express.methodOverride());
+  app.use('/img', express['static'](path.join(bootstrapPath, 'img')));
+  app.use(app.router);
+  app.use(less({
+    src    : path.join(__dirname, 'assets', 'less'),
+    paths  : [path.join(bootstrapPath, 'less')],
+    dest   : path.join(__dirname, 'public', 'stylesheets'),
+    prefix : '/stylesheets'
+  }));
+  app.use(express['static'](path.join(__dirname, 'public')));
+  // ...
+});
+
+// ...
+```
+
+```css
+// assets/less/base.less
+
+@import 'bootstrap';
+@import 'responsive';
+
+@bodyBackground: #FAF7EC;
+@navbarBrandColor: #989CAE;
+
+.brand {
+  font-family: @monoFontFamily;
+}
+```
+
