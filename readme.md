@@ -186,8 +186,8 @@ Here's an example on how to use Twitter's bootstrap within an Express.js set-up:
   // ...
   "dependencies": {
     "less-middleware": "*",
-    "bootstrap": "git+https://github.com/twitter/bootstrap.git#2.2.1",
-    "express": "r3.0.0"
+    "bootstrap": "git+https://github.com/twitter/bootstrap.git#v2.2.2",
+    "express": "3.0"
   }
 }
 ```
@@ -201,7 +201,7 @@ var express  = require('express')
 
 app.configure(function(){
   // ...
-  var bootstrapPath = path.join(__dirname, 'node_modules', 'bootstrap', 'less');
+  var bootstrapPath = path.join(__dirname, 'node_modules', 'bootstrap');
   app.use(express.bodyParser());
   app.use(express.methodOverride());
   app.use('/img', express['static'](path.join(bootstrapPath, 'img')));
