@@ -140,8 +140,8 @@ Since less middleware relies on static content to be served by express.static, u
 
         var tmpDir = os.tmpDir();
         app.use(lessMiddleware({
-            dest: __dirname + '/public/stylesheets',
-            src: tmpDir,
+            src: __dirname + '/public/stylesheets',
+            dest: tmpDir,
             compress: true
         }));
 
