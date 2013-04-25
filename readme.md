@@ -258,3 +258,16 @@ app.configure(function(){
 }
 ```
 
+## Troubleshooting
+
+### My less never recompiles, even when I use `{force: true}`!
+Make sure you're declaring less-middleware before your static middleware, if you're using the same directory, e.g. (with express):
+```js
+app.use(require('less-middleware')({ src: __dirname + '/public', debug: true }));
+app.use(express.static(path.join(__dirname, 'public')));
+```
+not
+```js
+app.use(express.static(path.join(__dirname, 'public')));
+app.use(require('less-middleware')({ src: __dirname + '/public', debug: true }));
+```
