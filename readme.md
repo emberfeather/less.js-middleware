@@ -127,6 +127,28 @@ If you are using a different `src` and `dest` options it causes for more complex
 
 Using the `prefix` it changes the `pathname` from `/stylesheets/styles.css` to `/styles.css`. With that prefix removed from the `pathname` it makes things cleaner. With the `prefix` removed it would look for the less file at `/src/less/styles.less` and compile it to `/public/stylesheets/styles.css`.
 
+A new alternative way to achieve the same thing as using prefix but with greater flexibility is to supply a shared root value. From this shared root, you would specify a URI style path to the appropriate source and destination directories:
+
+```javascript
+var lessMiddleware = require('less-middleware')
+  , path = require('path')
+  , pubDir = path.join(__dirname, 'public')
+  , app = express.createServer();
+  
+app.configure(function() {
+    app.use(lessMiddleware({
+        dest: '/css', // should be the URI to your css directory from the location bar in your browser
+        src: '/less', // or '../less' if the less directory is outside of /public
+        root: pubDir,
+        compress: true
+    }));
+    
+    app.use(express.static(pubDir));
+});
+```
+
+This will allow any file under the /less directory, including subdirectories, to be compiled into an identical directory structure under /css.
+
 ### Express - Using a temp directory for `dest`
 
 Since less middleware relies on static content to be served by express.static, using temp directories just requires that you inform express about where generated files are built:
