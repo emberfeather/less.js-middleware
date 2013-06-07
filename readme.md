@@ -54,6 +54,11 @@
             <td><code>auto</code></td>
         </tr>
         <tr>
+            <th><code>yuicompress</code></th>
+            <td>same as compress but using yui compressor</td>
+            <td><code>auto</code></td>
+        </tr>
+        <tr>
             <th><code>optimization</code></th>
             <td>Desired level of LESS optimization. Optionally <code>0</code>, <code>1</code>, or <code>2</code></td>
             <td><code>0</code></td>
