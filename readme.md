@@ -70,9 +70,7 @@
         </tr>
         <tr>
             <th><code>sourceMap</th>
-            <td>Out put SourceMap v3 for Chrome v27+. This option
-    overwrites dumpLineNumbers to <code>'comments'</code> and force to
-     <code>true</code></td>
+            <td>Out put SourceMap v3 for Chrome v27+. This option overwrites dumpLineNumbers to <code>'comments'</code></td>
             <td><code>false</code></td>
         </tr>
 
