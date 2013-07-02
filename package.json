@@ -10,7 +10,8 @@
   "main": "lib/middleware.js",
   "dependencies": {
     "less": "~1.4",
-    "mkdirp": "~0.3"
+    "mkdirp": "~0.3",
+    "source-map": "~0.1.25"
   },
   "devDependencies": {},
   "optionalDependencies": {},
