@@ -68,6 +68,11 @@
             <td>Add line tracking to the compiled css. Optionally <code>0</code>, <code>'comments'</code>, or <code>'mediaquery'</code></td>
             <td><code>0</code></td>
         </tr>
+        <tr>
+            <th><code>sourceMap</th>
+            <td>Out put SourceMap v3 for Chrome v27+. This option overwrites dumpLineNumbers to <code>'comments'</code></td>
+            <td><code>false</code></td>
+        </tr>
 
     </tbody>
 </table>
