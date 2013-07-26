@@ -68,6 +68,11 @@
             <td>Add line tracking to the compiled css. Optionally <code>0</code>, <code>'comments'</code>, or <code>'mediaquery'</code></td>
             <td><code>0</code></td>
         </tr>
+        <tr>
+            <th><code>relativeUrls</th>
+            <td>Adjust urls to be relative to directory of files imported with @import. If false, urls will remain unchanged.</td>
+            <td><code>false</code></td>
+        </tr>
 
     </tbody>
 </table>
