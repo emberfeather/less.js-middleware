@@ -86,7 +86,7 @@
 
 ### Connect
 
-	var lessMiddleware = require('less-middleware');
+    var lessMiddleware = require('less-middleware');
 
     var server = connect.createServer(
         lessMiddleware({
