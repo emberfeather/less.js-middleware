@@ -55,7 +55,7 @@
         </tr>
         <tr>
             <th><code>yuicompress</code></th>
-            <td>More involved minification with <a href="http://yui.github.io/yuicompressor/css.html">YUI compression</a>
+            <td>More involved minification with <a href="http://yui.github.io/yuicompressor/css.html">YUI compression</a></td>
             <td><code>false</code></td>
         </tr>
         <tr>
@@ -73,6 +73,11 @@
             <td>Adjust urls to be relative to directory of files imported with @import. If false, urls will remain unchanged.</td>
             <td><code>false</code></td>
         </tr>
+         <tr>
+            <th><code>treeFunctions</th>
+            <td>Object with custom functions added to less.tree.functions.</td>
+            <td><code>empty object</code></td>
+        </tr>
 
     </tbody>
 </table>
@@ -81,7 +86,7 @@
 
 ### Connect
 
-    var lessMiddleware = require('less-middleware');
+	var lessMiddleware = require('less-middleware');
 
     var server = connect.createServer(
         lessMiddleware({
