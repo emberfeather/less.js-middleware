@@ -55,7 +55,7 @@
         </tr>
         <tr>
             <th><code>yuicompress</code></th>
-            <td>More involved minification with <a href="http://yui.github.io/yuicompressor/css.html">YUI compression</a>
+            <td>More involved minification with <a href="http://yui.github.io/yuicompressor/css.html">YUI compression</a></td>
             <td><code>false</code></td>
         </tr>
         <tr>
@@ -64,14 +64,19 @@
             <td><code>0</code></td>
         </tr>
         <tr>
-            <th><code>dumpLineNumbers</th>
+            <th><code>dumpLineNumbers</code></th>
             <td>Add line tracking to the compiled css. Optionally <code>0</code>, <code>'comments'</code>, or <code>'mediaquery'</code></td>
             <td><code>0</code></td>
         </tr>
         <tr>
-            <th><code>relativeUrls</th>
+            <th><code>relativeUrls</code></th>
             <td>Adjust urls to be relative to directory of files imported with @import. If false, urls will remain unchanged.</td>
             <td><code>false</code></td>
+        </tr>
+         <tr>
+            <th><code>treeFunctions</code></th>
+            <td>Object with custom functions added to less.tree.functions.</td>
+            <td><code>empty object</code></td>
         </tr>
 
     </tbody>
