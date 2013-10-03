@@ -304,4 +304,4 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(require('less-middleware')({ src: __dirname + '/public', debug: true }));
 ```
 
-### If you are hosting your app on IIS you will have to modify your web.config file in order to allow NodeJS to server your CSS static files.  IIS will cache your CSS files which bypasses NodeJS static file serving, which in turn does not allow the middleware to recompile your LESS files.
+### If you are hosting your app on IIS you will have to modify your web.config file in order to allow NodeJS to serve your CSS static files.  IIS will cache your CSS files which bypasses NodeJS static file serving, which in turn does not allow the middleware to recompile your LESS files.
