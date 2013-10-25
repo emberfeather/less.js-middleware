@@ -73,7 +73,11 @@
             <td>Adjust urls to be relative to directory of files imported with @import. If false, urls will remain unchanged.</td>
             <td><code>false</code></td>
         </tr>
-
+        <tr>
+            <th><code>metadata</th>
+            <td>Pass metadata from a file or object, to the less parser, underscore templates syntax is used.</td>
+            <td><code>false</code></td>
+        </tr>
     </tbody>
 </table>
 
@@ -231,6 +235,65 @@ body {
 
 @bodyColor: #333333;
 ```
+### Passing metadata
+
+You can pass additional data to be inserted in the output. To do that, think of the less file as it would be an underscore template.
+
+
+```js
+var less = require('less-middleware'),
+    path = require('path');
+
+    lessMiddleware({
+        src: path.join(__dirname, 'public'),
+        metadata: 'metadata.json'
+    });
+```
+you also can pass an array of files (json only) 
+```js
+var less = require('less-middleware'),
+    path = require('path');
+
+    lessMiddleware({
+        src: path.join(__dirname, 'public'),
+        metadata: ['metadata.json', 'config/config.json']
+    });
+```
+or an object:
+```js
+var less = require('less-middleware'),
+    path = require('path');
+
+    lessMiddleware({
+        src: path.join(__dirname, 'public'),
+        metadata: { data: 'something' }
+    });
+```
+
+
+```js
+// metadata.json
+{
+    "pathPrefix": "some/path/to/prefix",
+    "color": "#123456"
+}
+```
+
+The data is accessed fron the global scope and referenced object are contained in variables named after the included file names.
+
+```css
+// style.less
+
+@path-to-important-file: '<%= metadata.pathPrefix %>/file.png';
+@color: <%= metadata.color %>;
+
+```
+
+Results in:
+```css
+@path-to-important-file: 'some/path/to/prefix/file.png';
+@color: #123456;
+```
 
 ### Using bootstrap
 
@@ -248,6 +311,7 @@ Here's an example on how to use Twitter's bootstrap within an Express.js set-up:
   }
 }
 ```
+
 
 ```js
 // app.js
