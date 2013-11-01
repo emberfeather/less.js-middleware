@@ -73,6 +73,11 @@
             <td>Adjust urls to be relative to directory of files imported with @import. If false, urls will remain unchanged.</td>
             <td><code>false</code></td>
         </tr>
+        <tr>
+            <th><code>sourceMap</th>
+            <td>Enable sourcemap support. You can compile your less and then use developer tools to see where in your less file a particular piece of css comes from.</td>
+            <td><code>false</code></td>
+        </tr>
 
     </tbody>
 </table>
