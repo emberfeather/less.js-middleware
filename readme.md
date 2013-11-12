@@ -64,21 +64,25 @@
             <td><code>0</code></td>
         </tr>
         <tr>
-            <th><code>dumpLineNumbers</th>
+            <th><code>dumpLineNumbers</code></th>
             <td>Add line tracking to the compiled css. Optionally <code>0</code>, <code>'comments'</code>, or <code>'mediaquery'</code></td>
             <td><code>0</code></td>
         </tr>
         <tr>
-            <th><code>relativeUrls</th>
+            <th><code>relativeUrls</code></th>
             <td>Adjust urls to be relative to directory of files imported with @import. If false, urls will remain unchanged.</td>
             <td><code>false</code></td>
         </tr>
         <tr>
-            <th><code>sourceMap</th>
+            <th><code>sourceMap</code></th>
             <td>Enable sourcemap support. You can compile your less and then use developer tools to see where in your less file a particular piece of css comes from.</td>
             <td><code>false</code></td>
         </tr>
-
+        <tr>
+            <th><code>preprocessor</code></th>
+            <td>Specify a preprocessing function applied to LESS source code before parsing. The function will receive the LESS source code and the Connect request object as parameters, and must return the modified source code.</td>
+            <td></td>
+        </tr>
     </tbody>
 </table>
 
@@ -294,6 +298,30 @@ app.configure(function(){
   font-family: @monoFontFamily;
 }
 ```
+
+### Preprocessing
+
+    var lessMiddleware = require('less-middleware');
+
+    var app = express.createServer();
+
+    app.configure(function () {
+        // Other configuration here...
+
+        app.use(lessMiddleware({
+            src: __dirname + '/public',
+            preprocessor: function(src, req) {
+                if (req.param("namespace")) {
+                    src = req.param("namespace") + " { " + src + " }";
+                }
+                
+                return src;
+            },
+            compress: true
+        }));
+
+        app.use(express.static(__dirname + '/public'));
+    });
 
 ## Troubleshooting
 
