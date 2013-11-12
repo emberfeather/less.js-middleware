@@ -55,7 +55,7 @@
         </tr>
         <tr>
             <th><code>yuicompress</code></th>
-            <td>More involved minification with <a href="http://yui.github.io/yuicompressor/css.html">YUI compression</a>
+            <td>More involved minification with <a href="http://yui.github.io/yuicompressor/css.html">YUI compression</a></td>
             <td><code>false</code></td>
         </tr>
         <tr>
@@ -81,6 +81,11 @@
         <tr>
             <th><code>preprocessor</code></th>
             <td>Specify a preprocessing function applied to LESS source code before parsing. The function will receive the LESS source code and the Connect request object as parameters, and must return the modified source code.</td>
+            <td></td>
+        </tr>
+         <tr>
+            <th><code>treeFunctions</code></th>
+            <td>Object with custom functions added to <code>less.tree.functions</code>.</td>
             <td></td>
         </tr>
     </tbody>
