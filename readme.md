@@ -94,33 +94,36 @@
 ## Examples
 
 ### Connect
+```js
+var lessMiddleware = require('less-middleware');
 
-    var lessMiddleware = require('less-middleware');
-
-    var server = connect.createServer(
-        lessMiddleware({
-            src: __dirname + '/public',
-            compress: true
-        }),
-        connect.staticProvider(__dirname + '/public')
-    );
+var server = connect.createServer(
+    lessMiddleware({
+        src: __dirname + '/public',
+        compress: true
+    }),
+    connect.staticProvider(__dirname + '/public')
+);
+```
 
 ### Express
 
-    var lessMiddleware = require('less-middleware');
+```js
+var lessMiddleware = require('less-middleware');
 
-    var app = express.createServer();
+var app = express.createServer();
 
-    app.configure(function () {
-        // Other configuration here...
+app.configure(function () {
+    // Other configuration here...
 
-        app.use(lessMiddleware({
-            src: __dirname + '/public',
-            compress: true
-        }));
+    app.use(lessMiddleware({
+        src: __dirname + '/public',
+        compress: true
+    }));
 
-        app.use(express.static(__dirname + '/public'));
-    });
+    app.use(express.static(__dirname + '/public'));
+});
+```
 
 ### Express - Different `src` and `dest`
 
@@ -132,28 +135,30 @@ The less middleware uses that path to determine where to look for less files. In
 
 If you are using a different `src` and `dest` options it causes for more complex directories structures unless you use the `prefix` option. For example, without the `prefix`, and with a `src` of `/src/less` and a `dest` of `/public` it would look for the less file at `/src/less/stylesheets/styles.less` and compile it to `/public/stylesheets/styles.css`. To make it cleaner you can use the `prefix` option:
 
-    var lessMiddleware = require('less-middleware');
+```js
+var lessMiddleware = require('less-middleware');
 
-    var app = express.createServer();
+var app = express.createServer();
 
-    app.configure(function () {
-        // Other configuration here...
+app.configure(function () {
+    // Other configuration here...
 
-        app.use(lessMiddleware({
-            dest: __dirname + '/public/stylesheets',
-            src: __dirname + '/src/less',
-            prefix: '/stylesheets',
-            compress: true
-        }));
+    app.use(lessMiddleware({
+        dest: __dirname + '/public/stylesheets',
+        src: __dirname + '/src/less',
+        prefix: '/stylesheets',
+        compress: true
+    }));
 
-        app.use(express.static(__dirname + '/public'));
-    });
+    app.use(express.static(__dirname + '/public'));
+});
+```
 
 Using the `prefix` it changes the `pathname` from `/stylesheets/styles.css` to `/styles.css`. With that prefix removed from the `pathname` it makes things cleaner. With the `prefix` removed it would look for the less file at `/src/less/styles.less` and compile it to `/public/stylesheets/styles.css`.
 
 A new alternative way to achieve the same thing as using prefix but with greater flexibility is to supply a shared root value. From this shared root, you would specify a URI style path to the appropriate source and destination directories:
 
-```javascript
+```js
 var lessMiddleware = require('less-middleware')
   , path = require('path')
   , pubDir = path.join(__dirname, 'public')
@@ -177,24 +182,26 @@ This will allow any file under the /less directory, including subdirectories, to
 
 Since less middleware relies on static content to be served by express.static, using temp directories just requires that you inform express about where generated files are built:
 
-    var lessMiddleware = require('less-middleware'),
-        os = require('os');
+```js
+var lessMiddleware = require('less-middleware'),
+    os = require('os');
 
-    var app = express.createServer();
+var app = express.createServer();
 
-    app.configure(function () {
-        // Other configuration here...
+app.configure(function () {
+    // Other configuration here...
 
-        var tmpDir = os.tmpDir();
-        app.use(lessMiddleware({
-            src: __dirname + '/public/stylesheets',
-            dest: tmpDir,
-            compress: true
-        }));
+    var tmpDir = os.tmpDir();
+    app.use(lessMiddleware({
+        src: __dirname + '/public/stylesheets',
+        dest: tmpDir,
+        compress: true
+    }));
 
-        app.use(express.static(__dirname + '/public'));
-        app.use(express.static(tmpDir));
-    });
+    app.use(express.static(__dirname + '/public'));
+    app.use(express.static(tmpDir));
+});
+```
 
 Using a temp directory is useful for read-only file systems, such as a Heroku deployment. By using a temp directory the css files can still be written and served.
 
@@ -306,27 +313,29 @@ app.configure(function(){
 
 ### Preprocessing
 
-    var lessMiddleware = require('less-middleware');
+```js
+var lessMiddleware = require('less-middleware');
 
-    var app = express.createServer();
+var app = express.createServer();
 
-    app.configure(function () {
-        // Other configuration here...
+app.configure(function () {
+    // Other configuration here...
 
-        app.use(lessMiddleware({
-            src: __dirname + '/public',
-            preprocessor: function(src, req) {
-                if (req.param("namespace")) {
-                    src = req.param("namespace") + " { " + src + " }";
-                }
-                
-                return src;
-            },
-            compress: true
-        }));
+    app.use(lessMiddleware({
+        src: __dirname + '/public',
+        preprocessor: function(src, req) {
+            if (req.param("namespace")) {
+                src = req.param("namespace") + " { " + src + " }";
+            }
+            
+            return src;
+        },
+        compress: true
+    }));
 
-        app.use(express.static(__dirname + '/public'));
-    });
+    app.use(express.static(__dirname + '/public'));
+});
+```
 
 ## Troubleshooting
 
