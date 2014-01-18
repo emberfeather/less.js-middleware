@@ -111,7 +111,7 @@ var server = connect.createServer(
 ```js
 var lessMiddleware = require('less-middleware');
 
-var app = express.createServer();
+var app = express();
 
 app.configure(function () {
     // Other configuration here...
@@ -138,7 +138,7 @@ If you are using a different `src` and `dest` options it causes for more complex
 ```js
 var lessMiddleware = require('less-middleware');
 
-var app = express.createServer();
+var app = express();
 
 app.configure(function () {
     // Other configuration here...
@@ -162,7 +162,7 @@ A new alternative way to achieve the same thing as using prefix but with greater
 var lessMiddleware = require('less-middleware')
   , path = require('path')
   , pubDir = path.join(__dirname, 'public')
-  , app = express.createServer();
+  , app = express();
   
 app.configure(function() {
     app.use(lessMiddleware({
@@ -186,7 +186,7 @@ Since less middleware relies on static content to be served by express.static, u
 var lessMiddleware = require('less-middleware'),
     os = require('os');
 
-var app = express.createServer();
+var app = express();
 
 app.configure(function () {
     // Other configuration here...
@@ -316,7 +316,7 @@ app.configure(function(){
 ```js
 var lessMiddleware = require('less-middleware');
 
-var app = express.createServer();
+var app = express();
 
 app.configure(function () {
     // Other configuration here...
