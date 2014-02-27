@@ -2,7 +2,7 @@
   "author": "Randy Merrill <Zoramite+github@gmail.com> (http://forthedeveloper.com)",
   "name": "less-middleware",
   "description": "LESS.js middleware for connect.",
-  "version": "0.1.15",
+  "version": "0.2.0",
   "repository": {
     "type": "git",
     "url": "git://github.com/emberfeather/less.js-middleware.git"
@@ -13,9 +13,14 @@
     "mkdirp": "~0.3.5",
     "node.extend": "~1.0.8"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "nodeunit": "~0.8.6"
+  },
   "optionalDependencies": {},
   "engines": {
     "node": ">= 0.7.1"
+  },
+  "scripts": {
+    "test": "nodeunit test"
   }
 }
