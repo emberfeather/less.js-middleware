@@ -1,3 +1,5 @@
+[![Build Status](https://drone.io/github.com/emberfeather/less.js-middleware/status.png)](https://drone.io/github.com/emberfeather/less.js-middleware/latest)
+
 ## Installation
 
     sudo npm install less-middleware
