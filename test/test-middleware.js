@@ -57,6 +57,29 @@ describe('middleware', function(){
     });
   });
 
+  describe('postprocess', function(){
+    describe('css', function(){
+      var app = express();
+      app.use(middleware(__dirname + '/fixtures', {
+        dest: tmpDest,
+        postprocess: {
+          css: function(css, req) {
+            return '/* Prepended Comment */\n' + css;
+          }
+        }
+      }));
+      app.use(express.static(tmpDest));
+
+      it('should prepend the comment on all output css', function(done){
+        var expected = fs.readFileSync(__dirname + '/fixtures/postprocessCss-exp.css', 'utf8');
+        request(app)
+          .get('/postprocessCss.css')
+          .expect(200)
+          .expect(expected, done);
+      });
+    });
+  });
+
   describe('preprocess', function(){
     describe('less', function(){
       var app = express();
