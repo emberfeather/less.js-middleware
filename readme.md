@@ -4,10 +4,8 @@ This middleware was created to allow processing of [Less](http://lesscss.org) fi
 
 ## Usage
 
-The examples are written for Express, but they should work as well with anything that uses the connect framework.
-
 ```js
-lessMiddleware(sourceDirectory, [{options}], [{parserOptions}], [{compilerOptions}])
+lessMiddleware(source, [{options}], [{parserOptions}], [{compilerOptions}])
 ```
 
 ### Express
