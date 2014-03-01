@@ -89,11 +89,77 @@ The following options can be used to control the behavior of the middleware:
     </tbody>
 </table>
 
-## `parserOptions` and `compilerOptions`
+## `parserOptions`
 
-The `parserOptions` and `compilerOptions` are passed directly into the less parser with minimal defaults or changes by the middleware.
+The `parserOptions` are passed directly into the less parser with minimal defaults or changes by the middleware.
 
 See the [Less usage documentation](http://lesscss.org/usage/) to learn about the valid options and their uses.
+
+The following are the defaults used by the middleware:
+
+<table>
+    <thead>
+        <tr>
+            <th>Option</th>
+            <th>Default</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <th><code>dumpLineNumbers</code></th>
+            <td><code>0</code></td>
+        </tr>
+        <tr>
+            <th><code>paths</code></th>
+            <td><code>[source]</code></td>
+        </tr>
+        <tr>
+            <th><code>optimization</code></th>
+            <td><code>0</code></td>
+        </tr>
+        <tr>
+            <th><code>relativeUrls</code></th>
+            <td><code>false</code></td>
+        </tr>
+    </tbody>
+</table>
+
+  // Override the defaults for the compiler.
+  compilerOptions = extend(true, {
+    compress: 'auto',
+    sourceMap: false,
+    yuicompress: false
+
+## `compilerOptions`
+
+The `compilerOptions` are passed directly into the less parser with minimal defaults or changes by the middleware.
+
+See the [Less usage documentation](http://lesscss.org/usage/) to learn about the valid options and their uses.
+
+The following are the defaults used by the middleware:
+
+<table>
+    <thead>
+        <tr>
+            <th>Option</th>
+            <th>Default</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <th><code>compress</code></th>
+            <td><code>auto</code></td>
+        </tr>
+        <tr>
+            <th><code>sourceMap</code></th>
+            <td><code>false</code></td>
+        </tr>
+        <tr>
+            <th><code>yuicompress</code></th>
+            <td><code>false</code></td>
+        </tr>
+    </tbody>
+</table>
 
 ## Examples
 
