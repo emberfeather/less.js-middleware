@@ -18,7 +18,7 @@ app.use(lessMiddleware(__dirname + '/public'));
 app.use(express.static(__dirname + '/public'));
 ```
 
-### Options
+### `options`
 
 The following options can be used to control the behavior of the middleware:
 
@@ -88,6 +88,12 @@ The following options can be used to control the behavior of the middleware:
         </tr>
     </tbody>
 </table>
+
+## `parserOptions` and `compilerOptions`
+
+The `parserOptions` and `compilerOptions` are passed directly into the less parser with minimal defaults or changes by the middleware.
+
+See the [Less usage documentation](http://lesscss.org/usage/) to learn about the valid options and their uses.
 
 ## Examples
 
