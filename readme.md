@@ -124,12 +124,6 @@ The following are the defaults used by the middleware:
     </tbody>
 </table>
 
-  // Override the defaults for the compiler.
-  compilerOptions = extend(true, {
-    compress: 'auto',
-    sourceMap: false,
-    yuicompress: false
-
 ## `compilerOptions`
 
 The `compilerOptions` are passed directly into the less parser with minimal defaults or changes by the middleware.
@@ -171,16 +165,23 @@ Common examples of using the Less middleware are available in the [wiki](https:/
 
 Make sure you're declaring less-middleware before your static middleware, if you're using the same directory, e.g. (with express):
 
+
 ```js
-app.use(require('less-middleware')({ src: __dirname + '/public', debug: true }));
-app.use(express.static(path.join(__dirname, 'public')));
+var lessMiddleware = require('less-middleware');
+
+var app = express();
+app.use(lessMiddleware(__dirname + '/public'));
+app.use(express.static(__dirname + '/public'));
 ```
 
 not
 
 ```js
-app.use(express.static(path.join(__dirname, 'public')));
-app.use(require('less-middleware')({ src: __dirname + '/public', debug: true }));
+var lessMiddleware = require('less-middleware');
+
+var app = express();
+app.use(express.static(__dirname + '/public'));
+app.use(lessMiddleware(__dirname + '/public'));
 ```
 
 ### IIS
