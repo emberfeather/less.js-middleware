@@ -1,3 +1,7 @@
+## Upcoming Changes
+
+**There is a beta version of 0.2.0 available. there will be several changes to the API so please test your code with the beta to discover any bugs before they become an issue.**
+
 ## Installation
 
     sudo npm install less-middleware
