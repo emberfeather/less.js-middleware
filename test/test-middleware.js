@@ -143,5 +143,22 @@ describe('middleware', function(){
           .expect(expected, done);
       });
     });
+
+    describe('pathRoot', function(){
+    var app = express();
+    app.use(middleware('/fixtures', {
+      dest: tmpDest,
+      pathRoot: __dirname
+    }));
+    app.use(express.static(tmpDest));
+
+    it('should process simple less files', function(done){
+      var expected = fs.readFileSync(__dirname + '/fixtures/simple-exp.css', 'utf8');
+      request(app)
+        .get('/simple.css')
+        .expect(200)
+        .expect(expected, done);
+    });
+  });
   });
 });
