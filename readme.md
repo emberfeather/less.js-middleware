@@ -195,7 +195,7 @@ var app = express();
 app.configure(function () {
     // Other configuration here...
 
-    var tmpDir = os.tmpDir();
+    var tmpDir = path.join(os.tmpDir(), 'css-cache');
     app.use(lessMiddleware({
         src: __dirname + '/public/stylesheets',
         dest: tmpDir,
