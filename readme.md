@@ -93,8 +93,6 @@ The following options can be used to control the behavior of the middleware:
 
 The `parserOptions` are passed directly into the less parser with minimal defaults or changes by the middleware.
 
-See the [Less usage documentation](http://lesscss.org/usage/) to learn about the valid options and their uses.
-
 The following are the defaults used by the middleware:
 
 <table>
@@ -127,8 +125,6 @@ The following are the defaults used by the middleware:
 ## `compilerOptions`
 
 The `compilerOptions` are passed directly into the less parser with minimal defaults or changes by the middleware.
-
-See the [Less usage documentation](http://lesscss.org/usage/) to learn about the valid options and their uses.
 
 The following are the defaults used by the middleware:
 
