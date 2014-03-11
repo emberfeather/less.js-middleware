@@ -2,6 +2,12 @@ This middleware was created to allow processing of [Less](http://lesscss.org) fi
 
 [![Build Status](https://drone.io/github.com/emberfeather/less.js-middleware/status.png)](https://drone.io/github.com/emberfeather/less.js-middleware/latest)
 
+## Installation
+
+```sh
+npm install less-middleware --save
+```
+
 ## Usage
 
 ```js
