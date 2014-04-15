@@ -8,15 +8,18 @@
     "url": "git://github.com/emberfeather/less.js-middleware.git"
   },
   "main": "lib/middleware.js",
+  "peerDependencies": {
+    "less": ">=1.6.1 <2"
+  },
   "dependencies": {
-    "less": "1.7.x",
     "mkdirp": "~0.3.5",
     "node.extend": "~1.0.8"
   },
   "devDependencies": {
     "mocha": "~1.17.1",
     "supertest": "~0.9.0",
-    "express": "~3.4.7"
+    "express": "~3.4.7",
+    "less": ">=1.6.1 <2"
   },
   "engines": {
     "node": ">= 0.7.1"
