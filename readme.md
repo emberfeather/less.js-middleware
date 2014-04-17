@@ -161,6 +161,25 @@ The following are the defaults used by the middleware:
 
 Common examples of using the Less middleware are available in the [wiki](https://github.com/emberfeather/less.js-middleware/wiki/Examples).
 
+## Extending Less
+
+Sometimes when using less-middleware, you might want to extend less with additional custom functions for use within our stylesheets. Here's how:
+
+1. Define `less` as a direct dependency of your project in your `package.json`, just like `less-middleware`.
+1. If you've already used `npm install` to install less-middleware, you'll need to run `npm dedupe less` to consolidate down to a single copy of the library at the top level of your project. (Run `npm list less` before and after to see the difference.)
+1. Now, in your app, you'll be able to extend less with additional functions:
+
+   ```js
+   var less = require('less');
+   require('less-middleware');
+
+   less.tree.functions.mycustomfunction = function() { ... };
+
+   app.use(less.middleware(...));
+   ```
+
+1. After that, you'll be able to use your new custom function `mycustomfunction` within your less files.
+
 ## Troubleshooting
 
 ### My less never recompiles, even when I use `{force: true}`!
