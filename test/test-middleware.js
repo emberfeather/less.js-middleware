@@ -57,107 +57,109 @@ describe('middleware', function(){
     });
   });
 
-  describe('postprocess', function(){
-    describe('css', function(){
-      var app = express();
-      app.use(middleware(__dirname + '/fixtures', {
-        dest: tmpDest,
-        postprocess: {
-          css: function(css, req) {
-            return '/* Prepended Comment */\n' + css;
-          }
-        }
-      }));
-      app.use(express.static(tmpDest));
-
-      it('should prepend the comment on all output css', function(done){
-        var expected = fs.readFileSync(__dirname + '/fixtures/postprocessCss-exp.css', 'utf8');
-        request(app)
-          .get('/postprocessCss.css')
-          .expect(200)
-          .expect(expected, done);
-      });
-    });
-  });
-
-  describe('preprocess', function(){
-    describe('less', function(){
-      var app = express();
-      app.use(middleware(__dirname + '/fixtures', {
-        dest: tmpDest,
-        preprocess: {
-          less: function(src, req) {
-            if (req.param("namespace")) {
-              src = req.param("namespace") + " { " + src + " }";
+  describe('options', function(){
+    describe('postprocess', function(){
+      describe('css', function(){
+        var app = express();
+        app.use(middleware(__dirname + '/fixtures', {
+          dest: tmpDest,
+          postprocess: {
+            css: function(css, req) {
+              return '/* Prepended Comment */\n' + css;
             }
-            return src;
           }
-        }
-      }));
-      app.use(express.static(tmpDest));
+        }));
+        app.use(express.static(tmpDest));
 
-      it('should add namespace when found', function(done){
-        var expected = fs.readFileSync(__dirname + '/fixtures/preprocessLess-exp-a.css', 'utf8');
-        clearCache('preprocessLess.css');
-        request(app)
-          .get('/preprocessLess.css?namespace=h1')
-          .expect(200)
-          .expect(expected, done);
-      });
-
-      it('should not add namespace when none provided', function(done){
-        var expected = fs.readFileSync(__dirname + '/fixtures/preprocessLess-exp-b.css', 'utf8');
-        clearCache('preprocessLess.css');
-        request(app)
-          .get('/preprocessLess.css')
-          .expect(200)
-          .expect(expected, done);
+        it('should prepend the comment on all output css', function(done){
+          var expected = fs.readFileSync(__dirname + '/fixtures/postprocessCss-exp.css', 'utf8');
+          request(app)
+            .get('/postprocessCss.css')
+            .expect(200)
+            .expect(expected, done);
+        });
       });
     });
 
-    describe('path', function(){
-      var app = express();
-      app.use(middleware(__dirname + '/fixtures', {
-        dest: tmpDest,
-        preprocess: {
-          path: function(pathname, req) {
-            return pathname.replace('.ltr', '');
+    describe('preprocess', function(){
+      describe('less', function(){
+        var app = express();
+        app.use(middleware(__dirname + '/fixtures', {
+          dest: tmpDest,
+          preprocess: {
+            less: function(src, req) {
+              if (req.param("namespace")) {
+                src = req.param("namespace") + " { " + src + " }";
+              }
+              return src;
+            }
           }
-        }
-      }));
-      app.use(express.static(tmpDest));
+        }));
+        app.use(express.static(tmpDest));
 
-      it('should remove .ltr from the less path when found', function(done){
-        var expected = fs.readFileSync(__dirname + '/fixtures/preprocessPath-exp.css', 'utf8');
-        request(app)
-          .get('/preprocessPath.ltr.css')
-          .expect(200)
-          .expect(expected, done);
+        it('should add namespace when found', function(done){
+          var expected = fs.readFileSync(__dirname + '/fixtures/preprocessLess-exp-a.css', 'utf8');
+          clearCache('preprocessLess.css');
+          request(app)
+            .get('/preprocessLess.css?namespace=h1')
+            .expect(200)
+            .expect(expected, done);
+        });
+
+        it('should not add namespace when none provided', function(done){
+          var expected = fs.readFileSync(__dirname + '/fixtures/preprocessLess-exp-b.css', 'utf8');
+          clearCache('preprocessLess.css');
+          request(app)
+            .get('/preprocessLess.css')
+            .expect(200)
+            .expect(expected, done);
+        });
       });
 
-      it('should not change less path when no matching .ltr', function(done){
-        var expected = fs.readFileSync(__dirname + '/fixtures/preprocessPath-exp.css', 'utf8');
-        request(app)
-          .get('/preprocessPath.css')
-          .expect(200)
-          .expect(expected, done);
+      describe('path', function(){
+        var app = express();
+        app.use(middleware(__dirname + '/fixtures', {
+          dest: tmpDest,
+          preprocess: {
+            path: function(pathname, req) {
+              return pathname.replace('.ltr', '');
+            }
+          }
+        }));
+        app.use(express.static(tmpDest));
+
+        it('should remove .ltr from the less path when found', function(done){
+          var expected = fs.readFileSync(__dirname + '/fixtures/preprocessPath-exp.css', 'utf8');
+          request(app)
+            .get('/preprocessPath.ltr.css')
+            .expect(200)
+            .expect(expected, done);
+        });
+
+        it('should not change less path when no matching .ltr', function(done){
+          var expected = fs.readFileSync(__dirname + '/fixtures/preprocessPath-exp.css', 'utf8');
+          request(app)
+            .get('/preprocessPath.css')
+            .expect(200)
+            .expect(expected, done);
+        });
       });
-    });
 
-    describe('pathRoot', function(){
-      var app = express();
-      app.use(middleware('/fixtures', {
-        dest: '/artifacts',
-        pathRoot: __dirname
-      }));
-      app.use(express.static(tmpDest));
+      describe('pathRoot', function(){
+        var app = express();
+        app.use(middleware('/fixtures', {
+          dest: '/artifacts',
+          pathRoot: __dirname
+        }));
+        app.use(express.static(tmpDest));
 
-      it('should process simple less files', function(done){
-        var expected = fs.readFileSync(__dirname + '/fixtures/pathRoot-exp.css', 'utf8');
-        request(app)
-          .get('/pathRoot.css')
-          .expect(200)
-          .expect(expected, done);
+        it('should process simple less files', function(done){
+          var expected = fs.readFileSync(__dirname + '/fixtures/pathRoot-exp.css', 'utf8');
+          request(app)
+            .get('/pathRoot.css')
+            .expect(200)
+            .expect(expected, done);
+        });
       });
     });
   });
