@@ -147,7 +147,7 @@ describe('middleware', function(){
     describe('pathRoot', function(){
       var app = express();
       app.use(middleware('/fixtures', {
-        dest: tmpDest,
+        dest: '/artifacts',
         pathRoot: __dirname
       }));
       app.use(express.static(tmpDest));
