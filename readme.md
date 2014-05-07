@@ -1,3 +1,7 @@
+**The less-middleware has recently been updated to version `1.0.2`.**
+
+**If you are seeing an error similar to `TypeError: Arguments to path.join must be strings` please read the [migration guide](https://github.com/emberfeather/less.js-middleware/wiki/Migration-0.1.x-1.0.x) to update your code.**
+
 This middleware was created to allow processing of [Less](http://lesscss.org) files for [Connect JS](http://www.senchalabs.org/connect/) framework and by extension the [Express JS](http://expressjs.com/) framework.
 
 [![Build Status](https://drone.io/github.com/emberfeather/less.js-middleware/status.png)](https://drone.io/github.com/emberfeather/less.js-middleware/latest)
