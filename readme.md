@@ -6,7 +6,7 @@
 
 ## Installation
 
-    sudo npm install less-middleware
+    npm install less-middleware
 
 ## Options
 
