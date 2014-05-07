@@ -1,12 +1,12 @@
 ## Upcoming Changes
 
-**There is a beta version of 0.2.0 available. there will be several changes to the API so please test your code with the beta to discover any bugs before they become an issue. Also see the [Migration Guide](https://github.com/emberfeather/less.js-middleware/wiki/Migration-0.1.x-0.2.0) for what to expect and update.**
+**There is a beta version available: 1.0.1-beta. there will be several changes to the API so please test your code with the beta to discover any bugs before they become an issue. Also see the [Migration Guide](https://github.com/emberfeather/less.js-middleware/wiki/Migration-0.1.x-1.0.x) for what to expect and update.**
 
 **If you are seeing an error about `TypeError: Arguments to path.join must be strings` you have been upgraded to the beta version. You can either update your usage to [match the updated API](https://github.com/emberfeather/less.js-middleware/issues/78) or change the prerequisite in your `package.json` file to version `~0.1.15` to return to the stable version.**
 
 ## Installation
 
-    sudo npm install less-middleware
+    npm install less-middleware
 
 ## Options
 
