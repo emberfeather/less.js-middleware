@@ -43,7 +43,7 @@ The following options can be used to control the behavior of the middleware:
     <tbody>
         <tr>
             <th><code>compiler</code></th>
-            <td>Options for the less compiler. See the "`compiler` Options" section below.</td>
+            <td>Options for the less compiler. See the "<code>compiler</code> Options" section below.</td>
             <td>&hellip;</td>
         </tr>
         <tr>
@@ -68,7 +68,7 @@ The following options can be used to control the behavior of the middleware:
         </tr>
         <tr>
             <th><code>parser</code></th>
-            <td>Options for the less parser. See the "`parser` Options" section below.</td>
+            <td>Options for the less parser. See the "<code>parser</code> Options" section below.</td>
             <td>&hellip;</td>
         </tr>
         <tr>
