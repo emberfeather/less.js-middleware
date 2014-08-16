@@ -16,13 +16,18 @@ var clearCache = function(filename) {
   }
 };
 
+var setupExpress = function(src, options) {
+  var app = express();
+  app.use(middleware(src, options));
+  app.use(express.static(tmpDest));
+  return app;
+}
+
 describe('middleware', function(){
   describe('simple', function(){
-    var app = express();
-    app.use(middleware(__dirname + '/fixtures', {
+    var app = setupExpress(__dirname + '/fixtures', {
       dest: tmpDest
-    }));
-    app.use(express.static(tmpDest));
+    });
 
     it('should process simple less files', function(done){
       var expected = fs.readFileSync(__dirname + '/fixtures/simple-exp.css', 'utf8');
@@ -34,11 +39,9 @@ describe('middleware', function(){
   });
 
   describe('import', function(){
-    var app = express();
-    app.use(middleware(__dirname + '/fixtures', {
+    var app = setupExpress(__dirname + '/fixtures', {
       dest: tmpDest
-    }));
-    app.use(express.static(tmpDest));
+    });
 
     it('should process less files with imports', function(done){
       var expected = fs.readFileSync(__dirname + '/fixtures/importSimple-exp.css', 'utf8');
@@ -60,16 +63,14 @@ describe('middleware', function(){
   describe('options', function(){
     describe('postprocess', function(){
       describe('css', function(){
-        var app = express();
-        app.use(middleware(__dirname + '/fixtures', {
+        var app = setupExpress(__dirname + '/fixtures', {
           dest: tmpDest,
           postprocess: {
             css: function(css, req) {
               return '/* Prepended Comment */\n' + css;
             }
           }
-        }));
-        app.use(express.static(tmpDest));
+        });
 
         it('should prepend the comment on all output css', function(done){
           var expected = fs.readFileSync(__dirname + '/fixtures/postprocessCss-exp.css', 'utf8');
@@ -83,8 +84,7 @@ describe('middleware', function(){
 
     describe('preprocess', function(){
       describe('less', function(){
-        var app = express();
-        app.use(middleware(__dirname + '/fixtures', {
+        var app = setupExpress(__dirname + '/fixtures', {
           dest: tmpDest,
           preprocess: {
             less: function(src, req) {
@@ -94,8 +94,7 @@ describe('middleware', function(){
               return src;
             }
           }
-        }));
-        app.use(express.static(tmpDest));
+        });
 
         it('should add namespace when found', function(done){
           var expected = fs.readFileSync(__dirname + '/fixtures/preprocessLess-exp-a.css', 'utf8');
@@ -117,16 +116,14 @@ describe('middleware', function(){
       });
 
       describe('path', function(){
-        var app = express();
-        app.use(middleware(__dirname + '/fixtures', {
+        var app = setupExpress(__dirname + '/fixtures', {
           dest: tmpDest,
           preprocess: {
             path: function(pathname, req) {
               return pathname.replace('.ltr', '');
             }
           }
-        }));
-        app.use(express.static(tmpDest));
+        });
 
         it('should remove .ltr from the less path when found', function(done){
           var expected = fs.readFileSync(__dirname + '/fixtures/preprocessPath-exp.css', 'utf8');
@@ -146,12 +143,10 @@ describe('middleware', function(){
       });
 
       describe('pathRoot', function(){
-        var app = express();
-        app.use(middleware('/fixtures', {
+        var app = setupExpress('/fixtures', {
           dest: '/artifacts',
           pathRoot: __dirname
-        }));
-        app.use(express.static(tmpDest));
+        });
 
         it('should process simple less files', function(done){
           var expected = fs.readFileSync(__dirname + '/fixtures/pathRoot-exp.css', 'utf8');
