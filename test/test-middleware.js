@@ -6,6 +6,8 @@ var middleware = require('../lib/middleware');
 var os = require('os');
 var request = require('supertest');
 var assert = require('assert');
+var copySync = require('fs-extra').copySync;
+var path = require('path');
 
 var tmpDest = __dirname + '/artifacts';
 var clearCache = function(filename) {
@@ -16,10 +18,11 @@ var clearCache = function(filename) {
   }
 };
 
-var setupExpress = function(src, options) {
+var setupExpress = function(src, options, staticDest) {
+  staticDest = staticDest || options.dest;
   var app = express();
   app.use(middleware(src, options));
-  app.use(express.static(tmpDest));
+  app.use(express.static(staticDest));
   return app;
 }
 
@@ -146,7 +149,7 @@ describe('middleware', function(){
         var app = setupExpress('/fixtures', {
           dest: '/artifacts',
           pathRoot: __dirname
-        });
+        }, tmpDest);
 
         it('should process simple less files', function(done){
           var expected = fs.readFileSync(__dirname + '/fixtures/pathRoot-exp.css', 'utf8');
@@ -155,6 +158,71 @@ describe('middleware', function(){
             .expect(200)
             .expect(expected, done);
         });
+      });
+    });
+
+    describe('cacheFile', function() {
+      var middlewareSrc = tmpDest + '/fixturesCopy';
+      var dest = tmpDest + '/cacheFileTest';
+      var cacheFile = dest + '/cacheFile.json';
+      try {
+        fs.mkdirSync(middlewareSrc);
+      } catch(e) {
+        if (e && e.code != 'EEXIST') throw e;
+      }
+      copySync(__dirname + '/fixtures', middlewareSrc);
+      var app;
+
+      var checkCacheFile = function(cacheFile, expectedFile){
+        return function(){
+          middleware._saveCacheToFile();
+          var cacheFileExpected = JSON.parse(fs.readFileSync(expectedFile, 'utf8'));
+          var cacheFileOutput = JSON.parse(fs.readFileSync(cacheFile, 'utf8'));
+          for (var file in cacheFileExpected) {
+            assert(cacheFileOutput[file] != undefined);
+            var expectedImports = cacheFileExpected[file].imports;
+            var outputImports = cacheFileOutput[file].imports;
+            for (var i = 0; i < expectedImports.length; i++) {
+              assert.equal(expectedImports[i].path, outputImports[i].path);
+            }
+            assert.equal(outputImports.length, expectedImports.length);
+          }
+        }
+      }
+
+      beforeEach(function() {
+        // Unfortunately because cache-related items are stored in globals
+        // (which they need to be so that they are shared across different
+        // middleware invocations), to properly test the cacheFile option we
+        // need to re-require the middleware for each of these tests.
+        var mpath = path.resolve(__dirname, '../lib/middleware.js');
+        delete require.cache[mpath];
+        middleware = require('../lib/middleware');
+        app = setupExpress(middlewareSrc, {
+          dest: dest,
+          cacheFile: cacheFile
+        });
+      });
+
+      it('should process files correctly and store the right cached imports', function(done){
+        var expected = fs.readFileSync(__dirname + '/fixtures/import-exp.css', 'utf8');
+        request(app)
+          .get('/import.css')
+          .expect(200)
+          .expect(expected)
+          .expect(checkCacheFile(cacheFile, __dirname + '/fixtures/cacheFile-exp.json'))
+          .end(done);
+      });
+
+      it('should ignore cached imports if the file has changed and update cached imports', function(done){
+        copySync(middlewareSrc + '/importSimple.less', middlewareSrc + '/import.less');
+        var expected = fs.readFileSync(__dirname + '/fixtures/importSimple-exp.css', 'utf8');
+        request(app)
+          .get('/import.css')
+          .expect(200)
+          .expect(expected)
+          .expect(checkCacheFile(cacheFile, __dirname + '/fixtures/cacheFile-exp2.json'))
+          .end(done);
       });
     });
   });

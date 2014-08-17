@@ -1,0 +1,9 @@
+{
+   "/Users/vivek/Developer/less-middleware/test/artifacts/fixturesCopy/import.less":{
+      "imports":[
+         {
+            "path":"/Users/vivek/Developer/less-middleware/test/artifacts/fixturesCopy/import-color.less"
+         }
+      ]
+   }
+}
