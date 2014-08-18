@@ -2,6 +2,7 @@
 
 var express = require('express');
 var fs = require('fs');
+var mkdirp = require('mkdirp');
 var middleware = require('../lib/middleware');
 var os = require('os');
 var request = require('supertest');
@@ -166,7 +167,7 @@ describe('middleware', function(){
       var dest = tmpDest + '/cacheFileTest';
       var cacheFile = dest + '/cacheFile.json';
       try {
-        fs.mkdirSync(middlewareSrc);
+        mkdirp.sync(middlewareSrc);
       } catch(e) {
         if (e && e.code != 'EEXIST') throw e;
       }
