@@ -174,10 +174,14 @@ describe('middleware', function(){
       copySync(__dirname + '/fixtures', middlewareSrc);
       var app;
 
+      var expandExpected = function(file) {
+        return file.replace(/\{\$\}/g, middlewareSrc);
+      }
+
       var checkCacheFile = function(cacheFile, expectedFile){
         return function(){
           middleware._saveCacheToFile();
-          var cacheFileExpected = JSON.parse(fs.readFileSync(expectedFile, 'utf8'));
+          var cacheFileExpected = JSON.parse(expandExpected(fs.readFileSync(expectedFile, 'utf8')));
           var cacheFileOutput = JSON.parse(fs.readFileSync(cacheFile, 'utf8'));
           for (var file in cacheFileExpected) {
             assert(cacheFileOutput[file] != undefined);
