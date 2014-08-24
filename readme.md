@@ -1,4 +1,4 @@
-**The less-middleware has recently been updated to version `1.0.3`.**
+**The less-middleware has recently been updated to version `1.0.4`.**
 
 **If you are seeing an error similar to `TypeError: Arguments to path.join must be strings` please read the [migration guide](https://github.com/emberfeather/less.js-middleware/wiki/Migration-0.1.x-1.0.x) to update your code.**
 
