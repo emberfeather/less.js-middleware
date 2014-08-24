@@ -33,6 +33,22 @@ describe('middleware', function(){
     });
   });
 
+  describe('source map', function(){
+    var app = express();
+      app.use(middleware(__dirname + '/fixtures', {
+        dest: tmpDest
+      }, {}, { sourceMap: true }));
+      app.use(express.static(tmpDest));
+
+    it('should handle source map files', function(done){
+      var expected = fs.readFileSync(__dirname + '/fixtures/simple-exp.css.map', 'utf8');
+        request(app)
+          .get('/simple.css.map')
+          .expect(200)
+          .expect(expected, done);
+    });
+  });
+
   describe('import', function(){
     var app = express();
     app.use(middleware(__dirname + '/fixtures', {
