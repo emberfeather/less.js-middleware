@@ -46,6 +46,7 @@ describe('middleware', function(){
   describe('source map', function(){
     var app = setupExpress(__dirname + '/fixtures', {
       dest: tmpDest,
+      force: true, // Need to force since using the same file as the simple test.
       compiler: {
         sourceMap: true
       }
@@ -53,9 +54,6 @@ describe('middleware', function(){
 
     it('should handle source map files', function(done){
       var expected = fs.readFileSync(__dirname + '/fixtures/simple-exp.css.map', 'utf8');
-      request(app)
-        .get('/simple.css')
-        .expect(200);
       request(app)
         .get('/simple.css.map')
         .expect(200)
