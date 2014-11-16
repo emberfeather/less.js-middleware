@@ -62,6 +62,11 @@ The following options can be used to control the behavior of the middleware:
             <td><code>false</code></td>
         </tr>
         <tr>
+            <th><code>globalVars</code></th>
+            <td>An object containing key value pairs that will be injected as global LESS <code>@variables</code> at runtime</td>
+            <td><code>null</code></td>
+        </tr>
+        <tr>
             <th><code>once</code></th>
             <td>Only recompile once after each server restart. Useful for reducing disk i/o on production.</td>
             <td><code>false</code></td>

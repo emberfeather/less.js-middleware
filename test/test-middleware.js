@@ -29,6 +29,7 @@ var setupExpress = function(src, options, staticDest) {
 }
 
 describe('middleware', function(){
+
   describe('simple', function(){
     var app = setupExpress(__dirname + '/fixtures', {
       dest: tmpDest
@@ -178,6 +179,25 @@ describe('middleware', function(){
             .expect(200)
             .expect(expected, done);
         });
+      });
+    });
+
+    describe('globalVars', function() {
+      var app = setupExpress(__dirname + '/fixtures', {
+        dest: tmpDest,
+        force : true,
+        globalVars: {
+          foo : 12,
+          bar : '#f0f0f0'
+        }
+      });
+
+      it('should inject runtime/enviroment variables', function(done){
+        var expected = fs.readFileSync(__dirname + '/fixtures/vars-exp.css', 'utf8');
+        request(app)
+          .get('/vars.css')
+          .expect(200)
+          .expect(expected, done);
       });
     });
 
