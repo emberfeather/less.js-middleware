@@ -102,6 +102,11 @@ The following options can be used to control the behavior of the middleware:
             <td><code>function(pathname, req){...}</code></td>
         </tr>
         <tr>
+            <th><code>preprocess.parserPaths</code></th>
+            <td>Function that modifies the parser paths before being parsed and compiled.</td>
+            <td><code>function(paths, req){...}</code></td>
+        </tr>
+        <tr>
             <th><code>storeCss</code></th>
             <td>Function that is in charge of storing the css in the filesystem.</td>
             <td><code>function(pathname, css, next){...}</code></td>
