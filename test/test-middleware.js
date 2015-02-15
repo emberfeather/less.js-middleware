@@ -170,8 +170,7 @@ describe('middleware', function(){
           dest: tmpDest,
           preprocess: {
             path: function(pathname, req) {
-                var version = req.url.match(/(?:\/application\/)([0-9\.0-9\.0-9]*)/),
-                    returnPath = pathname.replace(/(\/application\/[0-9\.0-9\.0-9].*\/)/, '/');
+                var returnPath = pathname.replace(/(\/application\/[0-9\.0-9\.0-9].*\/)/, '/');
                 return returnPath;
             },
             parserPaths: function(paths, req) {
