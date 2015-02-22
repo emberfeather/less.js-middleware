@@ -1,0 +1,9 @@
+{
+   "{$}/import.less": {
+      "imports": [
+         "{$}/import-header.less",
+         "{$}/import-widget.less",
+         "{$}/import-color.less"
+      ]
+   }
+}

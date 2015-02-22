@@ -111,6 +111,11 @@ The following options can be used to control the behavior of the middleware:
             <td>Function that is in charge of storing the css in the filesystem.</td>
             <td><code>function(pathname, css, next){...}</code></td>
         </tr>
+        <tr>
+            <th><code>cacheFile</code></th>
+            <td>Path to a JSON file that will be used to cache less data across server restarts. This can greatly speed up initial load time after a server restart - if the less files haven't changed and the css files still exist, specifying this option will mean that the less files don't need to be recompiled after a server restart.</td>
+            <td></td>
+        </tr>
     </tbody>
 </table>
 
