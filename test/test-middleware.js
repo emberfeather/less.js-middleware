@@ -167,7 +167,7 @@ describe('middleware', function(){
         });
       });
 
-      describe('parserPaths', function(){
+      describe('importPaths', function(){
         var app = setupExpress(__dirname + '/fixtures', {
           dest: tmpDest,
           preprocess: {
@@ -175,7 +175,7 @@ describe('middleware', function(){
                 var returnPath = pathname.replace(/(\/application\/[0-9\.0-9\.0-9].*\/)/, '/');
                 return returnPath;
             },
-            parserPaths: function(paths, req) {
+            importPaths: function(paths, req) {
               var version = req.url.match(/(?:\/application\/)([0-9\.0-9\.0-9]*)/),
                   reqPath = path.join(__dirname,'external', version[1] , '/'),
                   paths = [
