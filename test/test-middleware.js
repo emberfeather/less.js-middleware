@@ -47,8 +47,10 @@ describe('middleware', function(){
     var app = setupExpress(__dirname + '/fixtures', {
       dest: tmpDest,
       force: true, // Need to force since using the same file as the simple test.
-      compiler: {
-        sourceMap: {}
+      render: {
+        sourceMap: {
+          sourceMapBasepath: __dirname + '/fixtures'
+        }
       }
     });
 
