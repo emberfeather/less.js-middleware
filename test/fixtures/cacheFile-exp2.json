@@ -1,9 +1,7 @@
 {
-   "{$}/import.less":{
-      "imports":[
-         {
-            "path":"{$}/import-color.less"
-         }
+   "{$}/import.less": {
+      "imports": [
+         "{$}/import-color.less"
       ]
    }
 }

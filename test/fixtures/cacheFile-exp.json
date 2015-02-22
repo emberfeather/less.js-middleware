@@ -1,15 +1,9 @@
 {
-   "{$}/import.less":{
-      "imports":[
-         {
-            "path":"{$}/import-header.less"
-         },
-         {
-            "path":"{$}/import-color.less"
-         },
-         {
-            "path":"{$}/import-widget.less"
-         }
+   "{$}/import.less": {
+      "imports": [
+         "{$}/import-header.less",
+         "{$}/import-widget.less",
+         "{$}/import-color.less"
       ]
    }
 }
