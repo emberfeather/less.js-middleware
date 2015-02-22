@@ -6,7 +6,7 @@
   * Updated dependencies to the latest versions.
   * Removed `options.parser` since Less is simplifying to just a `render` function.
   * Using `options.render` for passing through all rendering options directly to the less rendering.
-  * Changed `options.storeCss` arguments to from `(pathname, css, next)` to` (pathname, css, req, next)`
+  * Changed `options.storeCss` arguments from `(pathname, css, next)` to `(pathname, css, req, next)`
   * Added `postprocess.sourcemap` option for modifying the sourcemap.
   * Added `storeSourcemap` option for manipulating the sourcemap storage.
   * Removed pre `0.1.x` warning
