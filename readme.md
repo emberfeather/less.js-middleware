@@ -1,7 +1,3 @@
-**The less-middleware has recently been updated to version `1.0.4`.**
-
-**If you are seeing an error similar to `TypeError: Arguments to path.join must be strings` please read the [migration guide](https://github.com/emberfeather/less.js-middleware/wiki/Migration-0.1.x-1.0.x) to update your code.**
-
 This middleware was created to allow processing of [Less](http://lesscss.org) files for [Connect JS](http://www.senchalabs.org/connect/) framework and by extension the [Express JS](http://expressjs.com/) framework.
 
 [![Build Status](https://drone.io/github.com/emberfeather/less.js-middleware/status.png)](https://drone.io/github.com/emberfeather/less.js-middleware/latest)
@@ -42,11 +38,6 @@ The following options can be used to control the behavior of the middleware:
     </thead>
     <tbody>
         <tr>
-            <th><code>compiler</code></th>
-            <td>Options for the less compiler. See the "<code>compiler</code> Options" section below.</td>
-            <td>&hellip;</td>
-        </tr>
-        <tr>
             <th><code>debug</code></th>
             <td>Show more verbose logging?</td>
             <td><code>false</code></td>
@@ -65,11 +56,6 @@ The following options can be used to control the behavior of the middleware:
             <th><code>once</code></th>
             <td>Only recompile once after each server restart. Useful for reducing disk i/o on production.</td>
             <td><code>false</code></td>
-        </tr>
-        <tr>
-            <th><code>parser</code></th>
-            <td>Options for the less parser. See the "<code>parser</code> Options" section below.</td>
-            <td>&hellip;</td>
         </tr>
         <tr>
             <th><code>pathRoot</code></th>
@@ -102,6 +88,11 @@ The following options can be used to control the behavior of the middleware:
             <td><code>function(pathname, req){...}</code></td>
         </tr>
         <tr>
+            <th><code>render</code></th>
+            <td>Options for the less render. See the "<code>render</code> Options" section below.</td>
+            <td>&hellip;</td>
+        </tr>
+        <tr>
             <th><code>storeCss</code></th>
             <td>Function that is in charge of storing the css in the filesystem.</td>
             <td><code>function(pathname, css, next){...}</code></td>
@@ -114,9 +105,9 @@ The following options can be used to control the behavior of the middleware:
     </tbody>
 </table>
 
-## `compiler` Options
+## `render` Options
 
-The `options.compiler` is passed directly into the less parser with minimal defaults or changes by the middleware.
+The `options.render` is passed directly into the `less.render` with minimal defaults or changes by the middleware.
 
 The following are the defaults used by the middleware:
 
@@ -133,44 +124,7 @@ The following are the defaults used by the middleware:
             <td><code>auto</code></td>
         </tr>
         <tr>
-            <th><code>sourceMap</code></th>
-            <td><code>false</code></td>
-        </tr>
-        <tr>
             <th><code>yuicompress</code></th>
-            <td><code>false</code></td>
-        </tr>
-    </tbody>
-</table>
-
-## `parser` Options
-
-The `options.parser` is passed directly into the less parser with minimal defaults or changes by the middleware.
-
-The following are the defaults used by the middleware:
-
-<table>
-    <thead>
-        <tr>
-            <th>Option</th>
-            <th>Default</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <th><code>dumpLineNumbers</code></th>
-            <td><code>0</code></td>
-        </tr>
-        <tr>
-            <th><code>paths</code></th>
-            <td><code>[source]</code></td>
-        </tr>
-        <tr>
-            <th><code>optimization</code></th>
-            <td><code>0</code></td>
-        </tr>
-        <tr>
-            <th><code>relativeUrls</code></th>
             <td><code>false</code></td>
         </tr>
     </tbody>
