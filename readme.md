@@ -100,7 +100,7 @@ The following options can be used to control the behavior of the middleware:
         <tr>
             <th><code>storeCss</code></th>
             <td>Function that is in charge of storing the css in the filesystem.</td>
-            <td><code>function(pathname, css, next){...}</code></td>
+            <td><code>function(pathname, css, req, next){...}</code></td>
         </tr>
         <tr>
             <th><code>cacheFile</code></th>
