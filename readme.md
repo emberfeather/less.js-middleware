@@ -88,14 +88,14 @@ The following options can be used to control the behavior of the middleware:
             <td><code>function(pathname, req){...}</code></td>
         </tr>
         <tr>
-            <th><code>preprocess.importPaths</code></th>
-            <td>Function that modifies the import paths used by the less parser</td>
-            <td><code>function(paths, req){...}</code></td>
-        </tr>
-        <tr>
             <th><code>render</code></th>
             <td>Options for the less render. See the "<code>render</code> Options" section below.</td>
             <td>&hellip;</td>
+        </tr>
+        <tr>
+            <th><code>preprocess.importPaths</code></th>
+            <td>Function that modifies the import paths used by the less parser</td>
+            <td><code>function(paths, req){...}</code></td>
         </tr>
         <tr>
             <th><code>storeCss</code></th>
