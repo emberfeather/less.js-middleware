@@ -231,6 +231,14 @@ describe('middleware', function(){
     }
 
     var checkCacheFile = function(cacheFile, expectedFile){
+      var sortByPath = function(a, b) {
+        var keyA = a.path;
+        var keyB = b.path;
+        if(keyA < keyB) return -1;
+        if(keyA > keyB) return 1;
+        return 0;
+      };
+
       return function(){
         // Force cacheFile write.
         middleware._saveCacheToFile();
@@ -241,13 +249,13 @@ describe('middleware', function(){
         for (var file in cacheFileExpected) {
           assert(cacheFileOutput[file] != undefined);
 
-          var expectedImports = cacheFileExpected[file].imports.sort();
-          var outputImports = cacheFileOutput[file].imports.sort();
+          var expectedImports = cacheFileExpected[file].imports.sort(sortByPath);
+          var outputImports = cacheFileOutput[file].imports.sort(sortByPath);
 
           assert.equal(outputImports.length, expectedImports.length);
 
           for (var i = 0; i < expectedImports.length; i++) {
-            assert.equal(expectedImports[i], outputImports[i]);
+            assert.equal(expectedImports[i].path, outputImports[i].path);
           }
         }
       }
