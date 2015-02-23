@@ -1,7 +1,10 @@
 {
    "{$}/import.less": {
       "imports": [
-         "{$}/import-color.less"
+        {
+          "path": "{$}/import-color.less",
+          "mtime": null
+        }
       ]
    }
 }
