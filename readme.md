@@ -88,6 +88,11 @@ The following options can be used to control the behavior of the middleware:
             <td><code>function(pathname, req){...}</code></td>
         </tr>
         <tr>
+            <th><code>preprocess.importPaths</code></th>
+            <td>Function that modifies the import paths used by the less parser per request.</td>
+            <td><code>function(paths, req){...}</code></td>
+        </tr>
+        <tr>
             <th><code>render</code></th>
             <td>Options for the less render. See the "<code>render</code> Options" section below.</td>
             <td>&hellip;</td>
@@ -126,6 +131,10 @@ The following are the defaults used by the middleware:
         <tr>
             <th><code>yuicompress</code></th>
             <td><code>false</code></td>
+        </tr>
+        <tr>
+            <th><code>paths</code></th>
+            <td><code>[]</code></td>
         </tr>
     </tbody>
 </table>

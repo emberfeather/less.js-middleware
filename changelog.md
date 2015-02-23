@@ -1,3 +1,10 @@
+# 2.0.1
+
+- 22 Feb 2015
+
+  * Fixed [#123](https://github.com/emberfeather/less.js-middleware/issues/123): imports are not objects for cache checking and did not have mtimes.
+  * Added a `preprocess.importPaths` for modifying the import paths per request.
+
 # 2.0.0
 
 – 21 Feb 2015

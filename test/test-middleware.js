@@ -167,6 +167,35 @@ describe('middleware', function(){
         });
       });
 
+      describe('importPaths', function(){
+        var app = setupExpress(__dirname + '/fixtures', {
+          dest: tmpDest,
+          preprocess: {
+            path: function(pathname, req) {
+                var returnPath = pathname.replace(/(\/[0-9\.0-9\.0-9].*\/)/, '/');
+                return returnPath;
+            },
+            importPaths: function(paths, req) {
+              var version = req.url.match(/\/([0-9\.0-9\.0-9]*)/);
+              var reqPath = path.join(__dirname, 'fixtures', 'external', version[1] , '/');
+              var paths = [
+                reqPath,
+                path.join(reqPath, 'ui')
+              ];
+              return paths;
+            }
+          }
+        });
+
+        it('should respond with newly mapped paths', function(done){
+          var expected = fs.readFileSync(__dirname + '/fixtures/preprocessParserPaths-exp.css', 'utf8');
+          request(app)
+            .get('/2.43.3/preprocessParserPaths.css')
+            .expect(200)
+            .expect(expected, done);
+        });
+      });
+
       describe('pathRoot', function(){
         var app = setupExpress('/fixtures', {
           dest: '/artifacts',
