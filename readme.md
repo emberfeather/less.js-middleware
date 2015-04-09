@@ -64,7 +64,7 @@ The following options can be used to control the behavior of the middleware:
         </tr>
         <tr>
             <th><code>postprocess</code></th>
-            <td>Object containing functions relavent to preprocessing data.</td>
+            <td>Object containing functions relevant to preprocessing data.</td>
             <td></td>
         </tr>
         <tr>
@@ -74,7 +74,7 @@ The following options can be used to control the behavior of the middleware:
         </tr>
         <tr>
             <th><code>preprocess</code></th>
-            <td>Object containing functions relavent to preprocessing data.</td>
+            <td>Object containing functions relevant to preprocessing data.</td>
             <td></td>
         </tr>
         <tr>
