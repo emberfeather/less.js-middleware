@@ -9,7 +9,7 @@
   },
   "main": "lib/middleware.js",
   "dependencies": {
-    "less": "2.4.x",
+    "less": "~2.5.0",
     "mkdirp": "~0.5",
     "node.extend": "~1.1"
   },
