@@ -9,15 +9,15 @@
   },
   "main": "lib/middleware.js",
   "dependencies": {
-    "less": "~2.5.0",
+    "less": "~2.6.0",
     "mkdirp": "~0.5",
     "node.extend": "~1.1"
   },
   "devDependencies": {
-    "mocha": "~2.1",
-    "supertest": "~0.15",
-    "express": "~4.11",
-    "fs-extra": "~0.16"
+    "mocha": "~2.4",
+    "supertest": "~1.2",
+    "express": "~4.13",
+    "fs-extra": "~0.26"
   },
   "engines": {
     "node": ">= 0.7.1"
