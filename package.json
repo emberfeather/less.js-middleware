@@ -14,10 +14,10 @@
     "node.extend": "~2.0.0"
   },
   "devDependencies": {
-    "mocha": "~3.3.0",
-    "supertest": "~3.0.0",
     "express": "~4.15.2",
-    "fs-extra": "~3.0.1"
+    "fs-extra": "~3.0.1",
+    "mocha": "~3.3.0",
+    "supertest": "~3.0.0"
   },
   "engines": {
     "node": ">= 0.7.1"
