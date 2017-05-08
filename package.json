@@ -11,13 +11,13 @@
   "dependencies": {
     "less": "~2.7.1",
     "mkdirp": "~0.5.1",
-    "node.extend": "~1.1.5"
+    "node.extend": "~2.0.0"
   },
   "devDependencies": {
-    "mocha": "~2.5.3",
-    "supertest": "~1.2",
-    "express": "~4.14",
-    "fs-extra": "~0.30"
+    "mocha": "~3.3.0",
+    "supertest": "~3.0.0",
+    "express": "~4.15.2",
+    "fs-extra": "~3.0.1"
   },
   "engines": {
     "node": ">= 0.7.1"
