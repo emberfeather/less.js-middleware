@@ -1,6 +1,6 @@
 This middleware was created to allow processing of [Less](http://lesscss.org) files for [Connect JS](http://www.senchalabs.org/connect/) framework and by extension the [Express JS](http://expressjs.com/) framework.
 
-[![Build Status](https://drone.io/github.com/emberfeather/less.js-middleware/status.png)](https://drone.io/github.com/emberfeather/less.js-middleware/latest)
+[![CircleCI](https://circleci.com/gh/emberfeather/less.js-middleware.svg?style=svg)](https://circleci.com/gh/emberfeather/less.js-middleware)
 [![Dependency Status](https://david-dm.org/emberfeather/less.js-middleware.svg)]()
 
 ## Installation
