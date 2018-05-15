@@ -21,8 +21,8 @@ jobs:
             - "node_modules"
 
       - run:
-        name: Tests
-        command: npm test
+          name: Tests
+          command: npm test
 
 workflows:
   version: 2
