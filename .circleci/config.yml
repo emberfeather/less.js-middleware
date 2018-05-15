@@ -4,7 +4,7 @@ jobs:
   test:
     working_directory: ~/less
     docker:
-      - image: circle/node:latest
+      - image: circleci/node:latest
     steps:
       - checkout
 
